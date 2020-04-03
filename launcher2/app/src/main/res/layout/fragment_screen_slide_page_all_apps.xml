@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- fragment_screen_slide_page.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contentAllApps"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="MissingDefaultResource"
+    android:orientation="vertical">
+
+    <TextView style="?android:textAppearanceMedium"
+        android:id="@+id/tvAllApps"
+        android:padding="16dp"
+        android:lineSpacingMultiplier="1.2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="All Apps"
+        android:visibility="gone"/>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rViewAllApps"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="50dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+
+   </LinearLayout>
