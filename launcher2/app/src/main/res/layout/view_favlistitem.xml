@@ -9,6 +9,11 @@
         android:textColor="@color/MainOpposite"
         android:textSize="48dp"
         android:text="sample text"
+
+        android:shadowColor="@android:color/black"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="7"
         >
     </TextView>
 

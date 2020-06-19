@@ -70,35 +70,37 @@ public class FragmentAllAppsScreen extends Fragment {
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                Log.d("TAG",packageNames.get(position));
+                Log.d("TAG","packageNames " + packageNames.get(position));
                 startActivity(packageManager.getLaunchIntentForPackage(packageNames.get(position)));
             }
         });
 
+
+
         //Add to shared preferences
-        ItemClickSupport.addTo(recyclerView).setOnItemLongClickListener(new ItemClickSupport.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClicked(RecyclerView recyclerView, int position, View v) {
-                Log.d("TAG", "LONG" + packageNames.get(position));
-
-                SharedPreferences sharedPreferences = context.getSharedPreferences("BrownLauncher", MODE_PRIVATE);
-
-                Set<String> retrievedFavNames = new HashSet<>(sharedPreferences.getStringSet("favNames", new HashSet<String>()));
-
-                if (!retrievedFavNames.remove(packageNames.get(position))) {
-                    retrievedFavNames.add(packageNames.get(position));
-                }
-                Log.d("TAG", retrievedFavNames.toString());
-
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putStringSet("favNames", retrievedFavNames);
-
-                editor.commit();
-                return true;
-            }
-        });
+//        ItemClickSupport.addTo(recyclerView).setOnItemLongClickListener(new ItemClickSupport.OnItemLongClickListener() {
+//            @Override
+//            public boolean onItemLongClicked(RecyclerView recyclerView, int position, View v) {
+//                Log.d("TAG", "LONG" + packageNames.get(position));
+//
+//                SharedPreferences sharedPreferences = context.getSharedPreferences("BrownLauncher", MODE_PRIVATE);
+//
+//                Set<String> retrievedFavNames = new HashSet<>(sharedPreferences.getStringSet("favNames", new HashSet<String>()));
+//
+//                if (!retrievedFavNames.remove(packageNames.get(position))) {
+//                    retrievedFavNames.add(packageNames.get(position));
+//                }
+//                Log.d("TAG", retrievedFavNames.toString());
+//
+//                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                editor.putStringSet("favNames", retrievedFavNames);
+//
+//                editor.commit();
+//                return true;
+//            }
+//        });
         //recyclerView.addOnItemTouchListener(new ListenerAllApps());
-        recyclerView.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener()) ;
+        //recyclerView.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener()) ;
     }
 
     private void fetchAppList() {
@@ -116,7 +118,7 @@ public class FragmentAllAppsScreen extends Fragment {
             appNameList.add(appName);
             packageNames.add(resolver.activityInfo.packageName);
         }
-        adapter = new AdapterAllApps(appNameList);
+        adapter = new AdapterAllApps(context, packageManager, appNameList, packageNames);
         Log.d("TAG","App List Fetched");
     }
 

@@ -1,6 +1,12 @@
 package rbrown.myapplication;
 
+import android.Manifest;
+import android.app.Activity;
+import android.app.WallpaperManager;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
@@ -8,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -31,6 +38,8 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     /** The fragment manager     */
     private FragmentManager fragmentManager;
 
+    private View activityView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +56,6 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //fragmentManager.getFragment(2)
-
     }
 
     @Override
@@ -115,6 +122,9 @@ public class ScreenSlidePagerActivity extends FragmentActivity {
          public int getItemCount() {
              return NUM_PAGES;
          }
-     }
 
+         public void recreateFragment() {
+             this.createFragment(1);
+         }
+     }
 }

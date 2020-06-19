@@ -4,7 +4,6 @@ import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import rbrown.myapplication.R;
 
 public class ItemClickSupport {
     private final RecyclerView mRecyclerView;

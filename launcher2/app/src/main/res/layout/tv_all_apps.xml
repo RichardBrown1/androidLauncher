@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tvAllAppsX"
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:textColor="@color/MainOpposite"
     android:textSize="28dp"
+
+    android:shadowColor="@android:color/black"
+    android:shadowDx="1"
+    android:shadowDy="1"
+    android:shadowRadius="7"
     >
 </TextView>
