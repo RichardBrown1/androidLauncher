@@ -41,8 +41,6 @@ public class AdapterAllApps extends RecyclerView.Adapter<AdapterAllApps.ViewHold
     private List<String> packageNames = new ArrayList<>();
     private PackageManager packageManager;
     private Context context;
-    final private int VIEW_HEADER = 1;
-    final private int VIEW_TEXT = 0;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and

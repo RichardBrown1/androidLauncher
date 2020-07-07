@@ -2,32 +2,25 @@ package rbrown.myapplication;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-
-import javax.security.auth.callback.Callback;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -35,8 +28,6 @@ public class FragmentFavouriteScreen extends Fragment {
     private Context context;
     private Activity activity;
 
-    //private ArrayList<String> favAppNames = new ArrayList<>();
-    //private List<String> favPkgNames = new ArrayList<>();
     private ArrayList<FavItem> arrFavItems = new ArrayList<>();
 
     private RecyclerView recyclerView;
@@ -77,6 +68,7 @@ public class FragmentFavouriteScreen extends Fragment {
         for (String pkgName : retrieved) {
             arrFavItems.add(new FavItem(pkgName, packageManager));
         }
+        Collections.sort(arrFavItems, sortByName);
     }
 
     public void setUpRecyclerView() {
@@ -98,9 +90,21 @@ public class FragmentFavouriteScreen extends Fragment {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                 Log.d("TAG", arrFavItems.get(position).getAppName());
-                //arrFavItems.get(position).getPkgName()
                 startActivity(packageManager.getLaunchIntentForPackage(arrFavItems.get(position).getPkgName()));
             }
         });
     }
+
+    public static Comparator<FavItem> sortByName = new Comparator<FavItem>() {
+        @Override
+        public int compare(FavItem item1, FavItem item2) {
+            if(item1.getAppName().equalsIgnoreCase("Settings")) {
+                return 1;
+            } else if(item2.getAppName().equalsIgnoreCase("Settings")) {
+                return -1;
+            }
+
+            return item1.getAppName().compareToIgnoreCase(item2.getAppName());
+        }
+    };
 }
