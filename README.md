@@ -12,7 +12,7 @@ can add to favourites list, swipe right for all apps list. while looking pretty 
 
 Wallpaper not made by me, it shows the text shadows well though. (Calming coastline, Lagos - Google Earth Living Wallpapers)
 ![Home Screen](img/homeScreen.png?raw=true "Home Screen")
-![All Apps Screen](img/AllApps.png?raw=true "All Apps Screen")
+![All Apps Screen](img/allApps.png?raw=true "All Apps Screen")
 
 ## Todo
 
